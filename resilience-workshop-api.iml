@@ -56,5 +56,8 @@
     <orderEntry type="library" name="Maven: com.typesafe.netty:netty-reactive-streams:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.sun.activation:javax.activation:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:log4j-over-slf4j:1.7.26" level="project" />
   </component>
 </module>
