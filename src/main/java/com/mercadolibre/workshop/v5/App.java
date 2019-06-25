@@ -18,9 +18,18 @@ public class App {
     private static Server buildServer() {
         ServerBuilder server = new ServerBuilder().http(8080);
 
-        server.service("/healthcheck", (context, response) -> HttpResponse.of(200));
+        server.service("/healthcheck", (context, request) -> HttpResponse.of(200));
 
-        server.service("/items/{id}", (context, response) -> {
+        server.service("/blocking", (context, request) -> HttpResponse.from(
+                request
+                        .aggregate()
+                        .thenApplyAsync(
+                                r -> respond(HttpStatus.OK, BlockingService.getInstance().calculate()),
+                                context.blockingTaskExecutor()
+                        )
+        ));
+
+        server.service("/items/{id}", (context, request) -> {
             String itemId = context.pathParam("id");
 
             return HttpResponse.from(
@@ -31,7 +40,7 @@ public class App {
             );
         });
 
-        server.service("/categories/{id}", (context, response) -> {
+        server.service("/categories/{id}", (context, request) -> {
             String categoryId = context.pathParam("id");
 
             return HttpResponse.from(

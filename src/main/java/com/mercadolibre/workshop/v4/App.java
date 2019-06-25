@@ -18,20 +18,20 @@ public class App {
     private static Server buildServer() {
         ServerBuilder server = new ServerBuilder().http(8080);
 
-        server.service("/healthcheck", (context, response) -> HttpResponse.of(200));
+        server.service("/healthcheck", (context, request) -> HttpResponse.of(200));
 
-        server.service("/items/{id}", (context, response) -> {
+        server.service("/items/{id}", (context, request) -> {
             String itemId = context.pathParam("id");
 
             return HttpResponse.from(
                     ItemsService
                             .getInstance()
                             .getItem(itemId)
-                            .thenApply(item -> respond(HttpStatus.OK, item))
+                            .thenApply(item -> respond(item.isComplete() ? HttpStatus.OK : HttpStatus.PARTIAL_CONTENT, item))
             );
         });
 
-        server.service("/categories/{id}", (context, response) -> {
+        server.service("/categories/{id}", (context, request) -> {
             String categoryId = context.pathParam("id");
 
             return HttpResponse.from(

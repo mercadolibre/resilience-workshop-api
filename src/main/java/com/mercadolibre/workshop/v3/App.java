@@ -1,4 +1,4 @@
-package com.mercadolibre.workshop.v2;
+package com.mercadolibre.workshop.v3;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.linecorp.armeria.common.HttpResponse;

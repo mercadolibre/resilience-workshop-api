@@ -1,7 +1,5 @@
-package com.mercadolibre.workshop.v4;
+package com.mercadolibre.workshop.v3;
 
-import com.mercadolibre.workshop.models.Category;
-import com.mercadolibre.workshop.models.FullItem;
 import com.mercadolibre.workshop.models.Item;
 
 import java.io.IOException;
@@ -15,7 +13,7 @@ class ItemsService {
         return Holder.INSTANCE;
     }
 
-    CompletableFuture<FullItem> getItem(String id) {
+    CompletableFuture<Item> getItem(String id) {
         return Utils
                 .doRequest("/items/" + id)
                 .thenApply(response -> {
@@ -24,13 +22,7 @@ class ItemsService {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                })
-                .thenCompose(item -> CategoriesService
-                        .getInstance()
-                        .getCategory(item.getId())
-                        .exceptionally(throwable -> new Category(item.getId()))
-                        .thenApply(category -> FullItem.from(item, category))
-                );
+                });
     }
 
     private static class Holder {

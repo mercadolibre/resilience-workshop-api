@@ -1,4 +1,4 @@
-package com.mercadolibre.workshop.v4;
+package com.mercadolibre.workshop.v3;
 
 import com.linecorp.armeria.client.HttpClient;
 import com.linecorp.armeria.client.HttpClientBuilder;

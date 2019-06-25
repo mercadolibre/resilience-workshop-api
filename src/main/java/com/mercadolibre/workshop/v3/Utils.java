@@ -1,4 +1,4 @@
-package com.mercadolibre.workshop.v4;
+package com.mercadolibre.workshop.v3;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.asynchttpclient.AsyncHttpClient;

@@ -22,7 +22,7 @@ class CategoriesService {
             .circuitOpenWindow(Duration.ofSeconds(10))
             .build();
 
-    private final HttpClient client = new HttpClientBuilder("http://localhost:80/")
+    private final HttpClient client = new HttpClientBuilder("http://localhost:80")
             .responseTimeout(Duration.ofSeconds(1))
             .decorator(
                     new CircuitBreakerHttpClientBuilder(CircuitBreakerStrategy.onServerErrorStatus())
