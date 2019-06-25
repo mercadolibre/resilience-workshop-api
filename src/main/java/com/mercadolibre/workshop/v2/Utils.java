@@ -1,6 +1,7 @@
 package com.mercadolibre.workshop.v2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mercadolibre.workshop.Config;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Response;
 
@@ -21,7 +22,7 @@ class Utils {
 
     public static CompletableFuture<Response> doRequest(String path) {
         return Utils.HTTP_CLIENT
-                .prepareGet("http://localhost:80" + path)
+                .prepareGet(Config.getBackendUrl() + path)
                 .setHeader("Content-Type", "application/json")
                 .execute()
                 .toCompletableFuture();
